@@ -1,0 +1,58 @@
+// Class definition for XO_App class
+// Author:  Mohammad El-Ramly
+// Date:    10/10/2022
+// Version: 1
+
+#include <iostream>
+#include"BoardGame_Classes.h"
+using namespace std;
+
+int main() {
+    int game;
+    cout << "Please, Enter the number of the game you want to play:" << endl;
+    cout << "1- X_O Game (3x3)" << endl;
+    cout << "2- Pyramic Tic-Tac-Toe" << endl;
+    cout << "3- Four-in-a-row" << endl;
+    cout << "4- 5 x 5 Tic Tac Toe" << endl;
+    cin >> game;
+
+    if(game == 1){
+        int choice;
+        Player* players[2];
+        players[0] = new Player (1, 'x');
+
+        cout << "Welcome to FCAI X-O Game:" << endl;
+        cout << "Press 1 if you want to play with computer:" << endl;
+        cout << "Press 2 if you want to play with your friend:" << endl;
+        cin >> choice;
+        if (choice != 1)
+            players[1] = new Player (2, 'o');
+        else
+            //Player pointer points to child
+            players[1] = new RandomPlayer ('o', 3);
+
+        GameManager x_o_game (new X_O_Board(), players);
+        x_o_game.run();
+        system ("pause");
+
+    }
+    if(game == 4){
+        int choice;
+        Player* players[2];
+        players[0] = new Player (1, 'X');
+
+        cout << "Welcome to FCAI Tic_Tac_Toe Game:" << endl;
+        cout << "Press 1 if you want to play with computer:" << endl;
+        cout << "Press 2 if you want to play with your friend:" << endl;
+        cin >> choice;
+        if (choice == 2)
+            players[1] = new Player (2, 'O');
+        else
+            //Player pointer points to child
+            players[1] = new RandomPlayer ('O', 5);
+
+        GameManager_Tic_Tac_Toe Tic (new Tic_Tac_Toe_Board, players);
+        Tic.run();
+        system ("pause");
+    }
+}
