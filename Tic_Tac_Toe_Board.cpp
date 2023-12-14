@@ -374,7 +374,7 @@ bool Tic_Tac_Toe_Board:: is_winner(){
         return true;
     }
     else{
-        cout << "Y Wins!" << endl;
+        cout << "O Wins!" << endl;
         cout << "X Counter: " << X_Counter << endl;
         cout << "O Counter: " << O_Counter << endl;
         return true;
