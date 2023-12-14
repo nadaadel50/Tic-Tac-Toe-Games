@@ -1,0 +1,31 @@
+#include <iostream>
+#include"BoardGame_Classes.h"
+using namespace std;
+
+GameManager_Tic_Tac_Toe::GameManager_Tic_Tac_Toe(Board* bPtr, Player* playerPtr[2] ) {
+    boardPtr = bPtr;
+    players[0] = playerPtr[0];
+    players[1] = playerPtr[1];
+}
+
+void GameManager_Tic_Tac_Toe::run() {
+    int x, y;
+
+    boardPtr->display_board();
+
+    while (!boardPtr->game_is_over()) {
+        for (int i:{0,1}) {
+            players[i]->get_move(x, y);
+            while (!boardPtr->update_board (x, y, players[i]->get_symbol())){
+                players[i]->get_move(x, y);
+            }
+            boardPtr->display_board();
+        }
+    }
+
+    if (boardPtr->is_winner()){
+        return;
+    }
+}
+
+
