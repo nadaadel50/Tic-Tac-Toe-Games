@@ -1,0 +1,117 @@
+
+#include <iostream>
+#include <random>
+#include <iomanip>
+#include <algorithm>
+#include"../include/BoardGame_Classes.hpp"
+
+using namespace std;
+
+Pyramic_X_O_Board ::Pyramic_X_O_Board() {
+
+    n_rows = 3; // Change the dimensions to fit the pyramid structure
+    n_cols = 5;
+    board = new char*[n_rows];
+    for (int i = 0; i < n_rows; i++) {
+        board[i] = new char[n_cols];
+        for (int j = 0; j < n_cols; j++)
+            board[i][j] = ' ';
+    }
+}
+bool Pyramic_X_O_Board :: update_board(int x, int y, char mark){
+
+    // Check if the move is valid
+    if (x < 0 || x >= n_rows || y < 0 || y >= n_cols || board[x][y] != ' ')
+        return false;
+
+    // Update the board
+    board[x][y] = mark;
+    n_moves++;
+    return true;
+}
+void Pyramic_X_O_Board :: display_board(){
+    int baseSize = 5;
+
+    // Calculate the maximum indentation
+    int maxIndent = (n_cols - baseSize) / 2;
+
+    // Print the pyramid structure
+    for (int i = 0; i < n_rows; i++) {
+        // Print spaces for indentation
+        int currentIndent;
+        for (int u=0 ;u<3;u++ ) {
+            currentIndent = maxIndent + (n_rows - i - 1)  ; // Increase the space for the first two rows
+        }
+
+
+        for (int j = 0; j < currentIndent; j++) {
+            cout << "          ";
+        }
+
+        // Print the squares of the pyramid
+        int currentSize = baseSize - 2 * (n_rows - 1 - i);
+        for (int j = 0; j < currentSize; j++) {
+            int row = n_rows - 1 - i;
+            cout  <<"(" << row << "," << j << ")";
+            cout << setw(2) << board[row][j] << " "<<" |";
+
+        }
+
+        cout << endl;
+        cout << "-------------------------------------------------------\n";
+    }
+    // cout << "-------------------------------------------------------\n";
+}
+bool Pyramic_X_O_Board :: is_winner(){
+
+    // Check for three in a row horizontally
+    for (int i = 0; i < n_rows; i++) {
+        for (int j = 0; j <= n_cols - 3; j++) {
+            if (board[i][j] != ' ' &&
+                board[i][j] == board[i][j + 1] &&
+                board[i][j] == board[i][j + 2]) {
+                return true;
+            }
+        }
+    }
+
+    // Check for three in a row vertically
+    if (board[0][2] != ' ' &&
+        board[0][2] == board[1][1] &&
+        board[0][2] == board[2][0]) {
+        return true;
+    }
+
+    // Check for three in a row diagonally
+    if (board[0][0] != ' ' &&
+        (board[0][0] == board[ 1][0] &&
+         board[0][0] == board[ 2][0])) {
+        return true;
+    }
+    if (board[0][4] != ' ' &&
+        (board[0][4] == board[ 1][2] &&
+         board[0][4] == board[ 2][0])) {
+        return true;
+    }
+
+    return false;
+
+}
+bool Pyramic_X_O_Board :: is_draw(){
+    return (n_moves == 9) && !is_winner();
+}
+bool Pyramic_X_O_Board :: game_is_over(){
+    return is_winner() || is_draw();
+}
+/*
+void RandomPlayer :: get_move(int& x, int& y) {
+     x = rand() % 3;  // Ensure x is between 0 and 2
+    y = rand() % dimension;  // Use the dimension variable
+
+    // Avoid certain positions based on your conditions
+    while ((x == 1 && (y == 3 || y == 4)) || (x == 2 && (y == 1 || y == 2 || y == 3 || y == 4))) {
+        x = rand() % 3;
+        y = rand() % dimension;
+    }
+}
+*/
