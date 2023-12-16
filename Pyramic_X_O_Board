@@ -20,7 +20,7 @@ Pyramic_X_O_Board ::Pyramic_X_O_Board() {
 bool Pyramic_X_O_Board :: update_board(int x, int y, char mark){
 
     // Check if the move is valid
-    if (x < 0 || x >= n_rows || y < 0 || y >= n_cols || board[x][y] != ' ')
+    if (x < 0 || x >= n_rows || y < 0 || y >= n_cols || board[x][y] != ' ' ||((x == 1 && (y == 3 || y == 4)) || (x == 2 && (y == 1 || y == 2 || y == 3 || y == 4))))
         return false;
 
     // Update the board
@@ -98,7 +98,3 @@ bool Pyramic_X_O_Board :: is_draw(){
 bool Pyramic_X_O_Board :: game_is_over(){
     return is_winner() || is_draw();
 }
-
-   
-      
-       
