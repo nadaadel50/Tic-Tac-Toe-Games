@@ -4,3 +4,23 @@ project(Tic_Tac_Toe_Game)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Task2_Assignment3 cmake-build-debug/main2.cpp X_O_Board.cpp  RandomPlayer.cpp Player.cpp GameManager.cpp Tic_Tac_Toe_Board.cpp GameManager_Tic_Tac_Toe.cpp BoardGame_Classes.h)
+
+/*
+
+cmake_minimum_required(VERSION 3.26)
+project(src)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(src
+        GameManager.cpp
+        Player.cpp
+        Pyramic_X_O_Board.cpp
+        RandomPlayer.cpp
+        X_O_App.cpp
+        X_O_Board.cpp
+        Pyramic_RandomPlayer.cpp
+        ../include/BoardGame_Classes.hpp
+)
+
+*/
