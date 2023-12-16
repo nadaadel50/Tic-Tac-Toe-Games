@@ -28,12 +28,11 @@ int main() {
         players[1] = new Player (2, 'o');
     else
         //Player pointer points to child
-        players[1] = new RandomPlayer ('o', 5);
+        players[1] = new Pyramic_RandomPlayer ('o', 5 );
 
     GameManager x_o_game (new Pyramic_X_O_Board(), players);
     x_o_game.run();
     system ("pause");
-
     }
 
    if(game == 2){
