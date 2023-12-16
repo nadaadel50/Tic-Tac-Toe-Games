@@ -25,7 +25,7 @@ bool Pyramic_X_O_Board :: update_board(int x, int y, char mark){
         return false;
 
     // Update the board
-    board[x][y] = mark;
+    board[x][y] =toupper(mark);
     n_moves++;
     return true;
 }
