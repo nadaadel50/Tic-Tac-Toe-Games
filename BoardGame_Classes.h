@@ -57,6 +57,15 @@ public:
     bool game_is_over();
 };
 
+class Pyramic_X_O_Board : public Board{
+public:
+    Pyramic_X_O_Board();
+    bool update_board(int x, int y, char mark);
+    void display_board();
+    bool is_winner();
+    bool is_draw();
+    bool game_is_over();
+};
 
 ///////////////////////////////////////////
 // This class represents a player who has
@@ -92,6 +101,16 @@ protected:
 public:
     // Take a symbol and pass it to parent
     RandomPlayer (char symbol, int dimension);
+    // Generate a random move
+    void get_move(int& x, int& y);
+};
+
+class Pyramic_RandomPlayer : public Player{
+protected:
+    int dimension;
+public:
+    Pyramic_RandomPlayer();
+    Pyramic_RandomPlayer ( char symbol, int dimension);
     // Generate a random move
     void get_move(int& x, int& y);
 };
