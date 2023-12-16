@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <random>
 #include <iomanip>
@@ -25,7 +24,7 @@ bool Pyramic_X_O_Board :: update_board(int x, int y, char mark){
         return false;
 
     // Update the board
-    board[x][y] =toupper(mark);
+    board[x][y] = toupper(mark);
     n_moves++;
     return true;
 }
@@ -38,11 +37,7 @@ void Pyramic_X_O_Board :: display_board(){
     // Print the pyramid structure
     for (int i = 0; i < n_rows; i++) {
         // Print spaces for indentation
-        int currentIndent;
-        for (int u=0 ;u<3;u++ ) {
-            currentIndent = maxIndent + (n_rows - i - 1)  ; // Increase the space for the first two rows
-        }
-
+        int currentIndent= maxIndent + (n_rows - i - 1);
 
         for (int j = 0; j < currentIndent; j++) {
             cout << "          ";
@@ -103,15 +98,7 @@ bool Pyramic_X_O_Board :: is_draw(){
 bool Pyramic_X_O_Board :: game_is_over(){
     return is_winner() || is_draw();
 }
-/*
-void RandomPlayer :: get_move(int& x, int& y) {
-     x = rand() % 3;  // Ensure x is between 0 and 2
-    y = rand() % dimension;  // Use the dimension variable
 
-    // Avoid certain positions based on your conditions
-    while ((x == 1 && (y == 3 || y == 4)) || (x == 2 && (y == 1 || y == 2 || y == 3 || y == 4))) {
-        x = rand() % 3;
-        y = rand() % dimension;
-    }
-}
-*/
+   
+      
+       
