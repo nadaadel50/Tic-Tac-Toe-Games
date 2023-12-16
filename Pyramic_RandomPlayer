@@ -1,0 +1,25 @@
+#include <iostream>
+#include <random>
+#include <iomanip>
+#include <algorithm>
+#include"../include/BoardGame_Classes.hpp"
+
+using namespace std;
+
+Pyramic_RandomPlayer::Pyramic_RandomPlayer (char symbol, int dimension): Player (symbol)
+{
+    this->dimension = dimension;
+    this->name = "Random Computer Player";
+    cout << "My names is " << name << endl;
+}
+
+void Pyramic_RandomPlayer :: get_move(int& x, int& y) {
+    x = rand() % 3;  // Ensure x is between 0 and 2
+    y = rand() % dimension;  // Use the dimension variable
+
+    // Avoid certain positions based on your conditions
+    while ((x == 1 && (y == 3 || y == 4)) || (x == 2 && (y == 1 || y == 2 || y == 3 || y == 4))) {
+        x = rand() % 3;
+        y = rand() % dimension;
+    }
+}
